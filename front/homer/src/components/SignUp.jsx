@@ -45,7 +45,7 @@ function SignUp() {
 
     return (
         <div className='signUp_rootDiv'>
-            <form onSubmit={(event) => handleSubmit(event)} className='flexContainer'>
+            <form className='flexContainer'>
                 <h1>SIGN UP!</h1>
                 <TextField type="email" name="email" label='email' placeholder="example@gmail.com" onChange={(event) => updateEmailField(event.target.value)} />
                 <TextField type="password" name="password" label='password' placeholder="enter your password" onChange={(event) => updatePasswordField(event.target.value)} />
@@ -53,7 +53,7 @@ function SignUp() {
                 <TextField type="text" name="name" label='name' placeholder="your name" onChange={(event) => updateNameField(event.target.value)} />
                 <TextField type="text" name="lastname" label='lastname' placeholder="your last name" onChange={(event) => updateLastNameField(event.target.value)} />
             </form >
-                <Button type="submit" variant="contained">Submit</Button>
+            <Button type="submit" variant="contained" onClick={(event) => handleSubmit(event)}>Submit</Button>
             <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
