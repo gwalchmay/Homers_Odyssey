@@ -13,3 +13,19 @@ form.flexContainer {
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
     margin-left: 1rem;
 }
+
+a{
+    text-decoration: none;
+    color: grey;
+}
+
+a:hover{
+    color: black;
+}
+
+.mini_container{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+}

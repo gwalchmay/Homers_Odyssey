@@ -1,0 +1,4 @@
+.MuiGrid-root.MuiGrid-container.MuiGrid-item{
+    display: flex;
+    justify-content: center;
+}

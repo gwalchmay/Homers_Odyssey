@@ -6,21 +6,16 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
 
-function SignUp() {
+
+function SignIn() {
     const [email, updateEmailField] = useState('');
     const [password, updatePasswordField] = useState('');
-    const [name, updateNameField] = useState('');
-    const [lastname, updateLastNameField] = useState('');
     const [flash, setFlash] = useState('')
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
         setOpen(true);
     };
-
-    function handleRedirect() {
-        setTimeout(() => {window.location.href = 'http://localhost:3000/signin'},2500);
-    }
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -29,38 +24,39 @@ function SignUp() {
 
         setOpen(false);
     };
+
+    function handleRedirect() {
+        setTimeout(() => {window.location.href = 'http://localhost:3000/profile'},2500);
+    }
+
     function handleSubmit(event) {
         event.preventDefault();
-        fetch("http://localhost:8000/auth/signup",
+        fetch("http://localhost:8000/auth/signin",
             {
                 method: 'POST',
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 }),
-                body: JSON.stringify({ 'email': email, 'password': password, 'name': name, 'lastname': lastname }),
+                body: JSON.stringify({ 'email': email, 'password': password }),
             })
             .then(res => res.json())
             .then(
                 res => setFlash(res.flash),
                 err => setFlash(err.flash))
             .then(handleClick())
-            .then(res => handleRedirect())
-
+            .then(handleRedirect())
     }
 
     return (
         <div className='signUp_rootDiv'>
             <form className='flexContainer'>
-                <h1>SIGN UP!</h1>
+                <h1>SIGN IN!</h1>
                 <TextField type="email" name="email" label='email' placeholder="example@gmail.com" onChange={(event) => updateEmailField(event.target.value)} />
                 <TextField type="password" name="password" label='password' placeholder="enter your password" onChange={(event) => updatePasswordField(event.target.value)} />
-                <TextField type="password" name="passwordbis" label='password again' placeholder="enter your password again" />
-                <TextField type="text" name="name" label='name' placeholder="your name" onChange={(event) => updateNameField(event.target.value)} />
-                <TextField type="text" name="lastname" label='lastname' placeholder="your last name" onChange={(event) => updateLastNameField(event.target.value)} />
             </form >
             <div className='mini_container'>
                 <Button type="submit" variant="contained" onClick={(event) => handleSubmit(event)}>Submit</Button>
-                <Link to="/signin">Already got an account? Click here</Link>
+                <Link to="/signup">Create an account</Link>
             </div>
             <Snackbar
                 anchorOrigin={{
@@ -83,4 +79,4 @@ function SignUp() {
     )
 }
 
-export default SignUp
+export default SignIn;
